@@ -1,6 +1,5 @@
 import { Remarkable } from 'remarkable';
 
 var md = new Remarkable();
-
-
-console.log(md.render('# Remarkable rulezz!'));
+// create either a custom converter or find a way to display md
+// i prefer the latter.
