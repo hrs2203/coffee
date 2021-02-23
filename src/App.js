@@ -59,7 +59,7 @@ class ContentBlock extends React.Component {
   render() {
     return (
       <main className='container'>
-        <div class="py-3 bg-light">
+        <div class="py-3">
           <div id="BlogTopics" class="row row-cols-md-3 g-3">
             {
               blogDetail.map(

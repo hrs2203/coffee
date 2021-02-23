@@ -5,7 +5,7 @@ import { NavHeader, ContentBlock } from './App.js';
 
 function App() {
   return (
-    <div className=''>
+    <div className='bg-white'>
       <NavHeader />
       <ContentBlock />
     </div>
