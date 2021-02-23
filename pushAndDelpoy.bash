@@ -1,2 +1,2 @@
-npm deploy
+npm run deploy
 bash ~/commandSet/pushMeGithub.bash "$*"
