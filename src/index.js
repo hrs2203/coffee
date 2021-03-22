@@ -1,16 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { NavHeader, ContentBlock } from './App.js';
+import { App } from './App.js';
 
-function App() {
-  return (
-    <div className='bg-white'>
-      <NavHeader />
-      <ContentBlock />
-    </div>
-  );
-}
 
 ReactDOM.render(
   <React.StrictMode>
