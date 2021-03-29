@@ -96,8 +96,8 @@ export class SearchPageComp extends React.Component {
 						className="btn btn-primary btn-block"
 						onClick={
 							() => {
-								this.showResult();
 								this.makeSearch();
+								this.showResult();
 							}
 						}
 					>

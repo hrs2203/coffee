@@ -99,6 +99,24 @@ class SinglePageApp extends React.Component {
     })
   }
 
+  componentDidMount() {
+    var localData = JSON.parse(
+      localStorage.getItem("globalContent")
+    );
+    if (localData === null) {
+      console.log("No Data Present");
+    } else {
+      this.setState(localData);
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      "globalContent",
+      JSON.stringify(this.state)
+    );
+  }
+
   render() {
 
     var childComponent = <HomePageComp />
