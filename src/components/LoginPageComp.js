@@ -33,12 +33,7 @@ export class LoginPageComp extends React.Component {
 				"userName": this.state.username,
 				"email": this.state.email,
 				"userId": this.state.password,
-				"userPref": {
-					"ent": 2,
-					"gov": 5,
-					"oth": 1,
-					"tech": 4,
-				}
+				"userPref": this.props.defaultUser.userPref
 			},
 			"messageBody": {
 				"messageType": 0,
@@ -131,12 +126,7 @@ export class SignupPageComp extends React.Component {
 				"userName": this.state.username,
 				"email": this.state.email,
 				"userId": this.state.password,
-				"userPref": {
-					"ent": 2,
-					"gov": 5,
-					"oth": 1,
-					"tech": 4,
-				}
+				"userPref": this.props.defaultUser.userPref
 			},
 			"messageBody": {
 				"messageType": 0,

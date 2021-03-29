@@ -37,9 +37,9 @@ class SinglePageApp extends React.Component {
         "email": "user@email.com",
         "userId": "ia321987913sda1234",
         "userPref": {
-          "ent": 2,
-          "gov": 5,
-          "oth": 1,
+          "ent": 3,
+          "gov": 1,
+          "oth": 2,
           "tech": 4,
         }
       },
@@ -136,11 +136,13 @@ class SinglePageApp extends React.Component {
     }
     else if (this.state.pageIndex === 4) {
       childComponent = <LoginPageComp
+        defaultUser={this.state.userDetail}
         updateGlobal={this.updateGlobal}
       />
     }
     else if (this.state.pageIndex === 5) {
       childComponent = <SignupPageComp
+        defaultUser={this.state.userDetail}
         updateGlobal={this.updateGlobal}
       />
     }
