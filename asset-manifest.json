@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/coffee/static/css/main.9e07b4e1.chunk.css",
-    "main.js": "/coffee/static/js/main.78bafb4d.chunk.js",
-    "main.js.map": "/coffee/static/js/main.78bafb4d.chunk.js.map",
+    "main.js": "/coffee/static/js/main.f87eb0c0.chunk.js",
+    "main.js.map": "/coffee/static/js/main.f87eb0c0.chunk.js.map",
     "runtime-main.js": "/coffee/static/js/runtime-main.32f4d81e.js",
     "runtime-main.js.map": "/coffee/static/js/runtime-main.32f4d81e.js.map",
     "static/js/2.2096c0da.chunk.js": "/coffee/static/js/2.2096c0da.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.32f4d81e.js",
     "static/js/2.2096c0da.chunk.js",
     "static/css/main.9e07b4e1.chunk.css",
-    "static/js/main.78bafb4d.chunk.js"
+    "static/js/main.f87eb0c0.chunk.js"
   ]
 }
