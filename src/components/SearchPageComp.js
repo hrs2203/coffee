@@ -22,7 +22,7 @@ export class SearchPageComp extends React.Component {
 		var searchView = <div></div>
 		if (!(this.state.query === "")){
 			searchView = <div className="p-2">
-				Looking for ... {this.state.query}
+				Looking for .... {this.state.query}
 			</div>
 		}
 
