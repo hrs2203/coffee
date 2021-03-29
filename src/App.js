@@ -1,15 +1,14 @@
 import React from 'react';
 
+// Components
 import { NavigationComp } from './components/NavigationComp';
 import { HomePageComp } from './components/HomePageComp.js';
 import { SearchPageComp } from './components/SearchPageComp.js';
 import { UserDetailComp } from './components/UserDetailComp.js';
 import { ExplorePageComp } from './components/ExplorePageComp.js';
-import { LoginPageComp } from './components/LoginPageComp.js';
-
+import { LoginPageComp, SignupPageComp } from './components/LoginPageComp.js';
 import { FooterComp } from './components/FooterComp.js';
-
-
+import { NotificationComponent } from './components/NotificationComponent.js'
 
 /**
  * Single Page Application
@@ -29,24 +28,76 @@ class SinglePageApp extends React.Component {
 
   constructor() {
     super();
+
     this.state = {
       "pageIndex": 0,
       "isLoggedIn": false,
       "userDetail": {
-        "userName": "User Name",
+        "userName": "Raju",
         "email": "user@email.com",
-        "userId": "ia321987913sda1234"
+        "userId": "ia321987913sda1234",
+        "userPref": {
+          "ent": 2,
+          "gov": 5,
+          "oth": 1,
+          "tech": 4,
+        }
+      },
+      "messageBody": {
+        "messageType": 0,
+        "messageBody": "Welcome Message",
+        "showMessage": false
       }
     }
+
     this.changePage = this.changePage.bind(this);
+    this.updateGlobal = this.updateGlobal.bind(this);
+    this.logoutOption = this.logoutOption.bind(this);
+    this.changeMessageBody = this.changeMessageBody.bind(this);
+
   }
 
+  /**
+   * Show message on top
+   * messageType : 0 -> success, 1 -> danger
+   * messageBody : String of what to display
+   * showMessage : wether to show or not
+   */
+  changeMessageBody(msgBody) {
+    this.setState({
+      "messageBody": msgBody
+    })
+  }
+
+  /**
+   * 0 : Homepage
+   * 1 : Search
+   * 2 : UserDetail
+   * 3 : Explore
+   * 4 : login page
+   * 5 : signup page
+   */
   changePage(indx) {
     this.setState({
       "pageIndex": indx
     })
   }
 
+  updateGlobal(vals) {
+    this.setState(vals);
+  }
+
+  logoutOption() {
+    this.setState({
+      "isLoggedIn": false,
+      "pageIndex": 0,
+      "messageBody": {
+        "messageType": 1,
+        "messageBody": "Logout Message",
+        "showMessage": true
+      }
+    })
+  }
 
   render() {
 
@@ -58,22 +109,37 @@ class SinglePageApp extends React.Component {
       childComponent = <SearchPageComp />
     }
     else if (this.state.pageIndex === 2) {
-      childComponent = <UserDetailComp />
+      childComponent = <UserDetailComp
+        userDetail={this.state.userDetail}
+      />
     }
     else if (this.state.pageIndex === 3) {
       childComponent = <ExplorePageComp />
     }
     else if (this.state.pageIndex === 4) {
-      childComponent = <LoginPageComp />
+      childComponent = <LoginPageComp
+        updateGlobal={this.updateGlobal}
+      />
+    }
+    else if (this.state.pageIndex === 5) {
+      childComponent = <SignupPageComp
+        updateGlobal={this.updateGlobal}
+      />
     }
 
     return (
-      <div className="container">
+      <div className="container p-2">
         <NavigationComp
           isLoggedIn={this.state.isLoggedIn}
+          userName={this.state.userDetail.userName}
           pageChanger={this.changePage}
+          logoutOption={this.logoutOption}
         />
         <hr></hr>
+        <NotificationComponent
+          changeMessageBody={this.changeMessageBody}
+          NotificationDetail={this.state.messageBody}
+        />
         { childComponent}
         <hr></hr>
         <FooterComp />
