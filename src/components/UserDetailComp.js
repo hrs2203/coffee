@@ -81,45 +81,45 @@ class UserCard extends React.Component {
   }
 }
 
-class UserPrefCard extends React.Component {
-  render() {
-    return (
-      <div className="card smallWidth mt-3 p-3">
-        <h5 className="text-center">
-          {this.props.userName}'s Preferences
-        </h5>
-        <ul className="list-group list-group-flush text-center">
-          <li className="list-group-item">
-            <div className="row">
-              <div className='col'>entertainment</div>
-              <div className='col'>government</div>
-              <div className='col'>others</div>
-              <div className='col'>technology</div>
-            </div>
-          </li>
-          <li className="list-group-item">
-            <div className="row">
-              <div className="row">
-                <div className='col'>{
-                  this.props.userPref.ent
-                }</div>
-                <div className='col'>{
-                  this.props.userPref.gov
-                }</div>
-                <div className='col'>{
-                  this.props.userPref.oth
-                }</div>
-                <div className='col'>{
-                  this.props.userPref.tech
-                }</div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    )
-  }
-}
+// class UserPrefCard extends React.Component {
+//   render() {
+//     return (
+//       <div className="card smallWidth mt-3 p-3">
+//         <h5 className="text-center">
+//           {this.props.userName}'s Preferences
+//         </h5>
+//         <ul className="list-group list-group-flush text-center">
+//           <li className="list-group-item">
+//             <div className="row">
+//               <div className='col'>entertainment</div>
+//               <div className='col'>government</div>
+//               <div className='col'>others</div>
+//               <div className='col'>technology</div>
+//             </div>
+//           </li>
+//           <li className="list-group-item">
+//             <div className="row">
+//               <div className="row">
+//                 <div className='col'>{
+//                   this.props.userPref.ent
+//                 }</div>
+//                 <div className='col'>{
+//                   this.props.userPref.gov
+//                 }</div>
+//                 <div className='col'>{
+//                   this.props.userPref.oth
+//                 }</div>
+//                 <div className='col'>{
+//                   this.props.userPref.tech
+//                 }</div>
+//               </div>
+//             </div>
+//           </li>
+//         </ul>
+//       </div>
+//     )
+//   }
+// }
 
 class HistoryListElement extends React.Component {
   render() {
