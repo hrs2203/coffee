@@ -27,10 +27,7 @@ class NewsComponent extends React.Component {
 		var newsBody = `${this.props.newsBody}`;
 		var newsLocation = `${this.props.newsLocation}`;
 		var newTime = `${this.props.newTime}`;
-
-		if (this.state.expanded) {
-			newsBody = `${newsBody}${newsBody}${newsBody}${newsBody}`
-		}
+		var newsBigBody = `${this.props.newsBigBody}`
 
 		return (
 			<div className="">
@@ -58,7 +55,9 @@ class NewsComponent extends React.Component {
 							</li>
 						</ul>
 
-						<p className="m-2" >{newsBody}</p>
+						<p className="m-2" >{
+							this.state.expanded ? newsBigBody : newsBody
+						}</p>
 						<button onClick={this.expandNews}
 							className="btn btn-outline-success m-1">
 							{this.state.expanded ? "Collapes" : "Expand"}
@@ -98,6 +97,7 @@ export class ExplorePageComp extends React.Component {
 					newsBody={news_file_data_ent_file1[index]["description"]}
 					newsLocation={news_file_data_ent_file1[index]["url"]}
 					newTime={news_file_data_ent_file1[index]["publishedAt"]}
+					newsBigBody={news_file_data_ent_file1[index]["content"]}
 				/>
 			)
 		}
@@ -111,6 +111,7 @@ export class ExplorePageComp extends React.Component {
 					newsBody={news_file_data_gov_file1[index]["description"]}
 					newsLocation={news_file_data_gov_file1[index]["url"]}
 					newTime={news_file_data_gov_file1[index]["publishedAt"]}
+					newsBigBody={news_file_data_gov_file1[index]["content"]}
 				/>
 			)
 		}
@@ -124,6 +125,7 @@ export class ExplorePageComp extends React.Component {
 					newsBody={news_file_data_tech_file1[index]["description"]}
 					newsLocation={news_file_data_tech_file1[index]["url"]}
 					newTime={news_file_data_tech_file1[index]["publishedAt"]}
+					newsBigBody={news_file_data_tech_file1[index]["content"]}
 				/>
 			)
 		}
@@ -135,6 +137,7 @@ export class ExplorePageComp extends React.Component {
 				<NewsComponent
 					newsHeader={news_file_data_othe_file1[index]["title"]}
 					newsBody={news_file_data_othe_file1[index]["description"]}
+					newsBigBody={news_file_data_othe_file1[index]["content"]}
 					newsLocation={news_file_data_othe_file1[index]["url"]}
 					newTime={news_file_data_othe_file1[index]["publishedAt"]}
 				/>

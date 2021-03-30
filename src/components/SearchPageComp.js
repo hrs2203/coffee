@@ -1,18 +1,20 @@
 import React from 'react';
 
+import {news_title} from './LocalDataLoad.js';
+
 class SearchResultUnit extends React.Component {
 	render() {
 		return (
 			<div className="card mb-3">
 				<div className="card-body">
 					<div className="row">
-						<div className="col-8">{
+						<div className="col-9">{
 							this.props.resultQuery
 						}</div>
-						<div className="col-4">
+						<div className="col">
 							<button className="btn btn-outline-success">
-								ReadMore
-						</button>
+								Read Complete Article
+							</button>
 						</div>
 					</div>
 				</div>
@@ -57,6 +59,18 @@ export class SearchPageComp extends React.Component {
 		return respList;
 	}
 
+	defaultList(){
+		var respList = [];
+		for (let index = 0; index < 30; index++) {
+			respList.push(
+				<SearchResultUnit
+					resultQuery={news_title[index]}
+				/>
+			)
+		}
+		return respList;
+	}
+
 
 	render() {
 
@@ -76,7 +90,9 @@ export class SearchPageComp extends React.Component {
 		}
 		if (this.state.query === "") {
 			searchView = <div></div>;
-			searchResult = <div></div>;
+			searchResult = <div>
+				{this.defaultList()}
+			</div>;
 		}
 
 		return (
@@ -101,13 +117,13 @@ export class SearchPageComp extends React.Component {
 							}
 						}
 					>
-						Search
+						Search Query
 					</button>
 				</div>
 				<div>
 					{searchView}
 				</div>
-				<div>
+				<div className="mt-4">
 					{searchResult}
 				</div>
 
