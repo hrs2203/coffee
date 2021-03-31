@@ -113,13 +113,17 @@ export class SearchPageComp extends React.Component {
 		}
 		if (this.state.showResponse) {
 			searchView = <div></div>;
-
+			var content = [];
 			if (this.state.query === "") {
-				searchResult = <div>{this.defaultList()}</div>;
+				content = this.defaultList();
 			}
 			else {
-				searchResult = <div><hr />{this.makeSearch()}</div>
+				content = this.makeSearch();
+				searchView = <div>
+					{content.length} out of {news_title.length} results
+				</div>
 			}
+			searchResult = <div><hr />{content}</div>;
 		}
 
 
@@ -142,6 +146,7 @@ export class SearchPageComp extends React.Component {
 					> Search Query </button>
 				</div>
 				<div>
+					<br />
 					{searchView}
 				</div>
 				<div className="mt-4">

@@ -98,10 +98,12 @@ class NewsComponent extends React.Component {
 							className="btn btn-outline-success m-1">
 							{this.state.expanded ? "Collapes" : "Expand"}
 						</button>
-						<button
-							className="btn btn-outline-dark m-1">
-							Original Resource
-					</button>
+						<a href={newsLocation}>
+							<button
+								className="btn btn-outline-dark m-1">
+								Original Resource
+						</button>
+					</a>
 					</div>
 				</div>
 			</div>
