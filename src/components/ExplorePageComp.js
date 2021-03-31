@@ -103,7 +103,7 @@ class NewsComponent extends React.Component {
 								className="btn btn-outline-dark m-1">
 								Original Resource
 						</button>
-					</a>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -190,17 +190,18 @@ export class ExplorePageComp extends React.Component {
 
 		items.sort((f, s) => s[1] - f[1]);
 
+
 		var headMap = {
 			"ent": "Entertainment",
 			"gov": "Government",
-			"oth": "Other",
+			"othe": "Other",
 			"tech": "Technology",
 		}
 
 		var bodyMap = {
 			"ent": 0,
 			"gov": 1,
-			"oth": 3,
+			"othe": 3,
 			"tech": 2,
 		}
 
@@ -232,9 +233,7 @@ export class ExplorePageComp extends React.Component {
 		var specificNewsList = [];
 		for (let index = 0; index < body.length; index++) {
 			specificNewsList.push(
-				<NewsComponent
-					news={news_file_data_gov_file1[index]}
-				/>
+				<NewsComponent news={body[index]} />
 			)
 		}
 		console.log(specificNewsList.length);

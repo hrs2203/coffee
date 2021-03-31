@@ -2,15 +2,65 @@ import React from 'react';
 
 import { news_title } from './LocalDataLoad.js';
 
+/**
+ * 
+ * {
+		"title": "sample search title",
+		"searchTime": "sample search time",
+		"searchUrl": "sample search URL",
+		"searchClass": "sample search class"
+	},
+	{
+		"title": "sample search title",
+		"searchTime": "sample search time",
+		"searchUrl": "sample search URL",
+		"searchClass": "sample search class"
+	},
+	{
+		"title": "sample search title",
+		"searchTime": "sample search time",
+		"searchUrl": "sample search URL",
+		"searchClass": "sample search class"
+	}
+ */
+
 class SearchResultUnit extends React.Component {
+
+	constructor() {
+		super();
+		this.getCategory = this.getCategory.bind(this);
+		this.loadNewsPage = this.loadNewsPage.bind(this)
+	}
+
+	getCategory(cat) {
+		var headMap = {
+			"ent": "Entertainment",
+			"gov": "Government",
+			"othe": "Other",
+			"tech": "Technology",
+		}
+		return headMap[cat];
+	}
+
+	loadNewsPage(query) {
+		var d = new Date();
+		this.props.updateUserPref({
+			"title": query["title"],
+			"searchTime": d.toDateString(),
+			"searchUrl": query["url"],
+			"searchClass": query["category"]
+		})
+		window.open(query["url"])
+	}
+
 	render() {
 		return (
 			<div className="card mb-3">
 				<div className="card-body">
 					<div className="row">
 						<div className="col-9">
-							<ul class="col list-group list-group-flush mb-3">
-								<li class="list-group-item">
+							<ul className="col list-group list-group-flush mb-3">
+								<li className="list-group-item">
 									<div className="row">
 										<div className='col-4'>Title</div>
 										<div className='col'>
@@ -18,7 +68,7 @@ class SearchResultUnit extends React.Component {
 										</div>
 									</div>
 								</li>
-								<li class="list-group-item">
+								<li className="list-group-item">
 									<div className="row">
 										<div className='col-4'>Published by</div>
 										<div className='col'>
@@ -26,7 +76,7 @@ class SearchResultUnit extends React.Component {
 										</div>
 									</div>
 								</li>
-								<li class="list-group-item">
+								<li className="list-group-item">
 									<div className="row">
 										<div className='col-4'>Published On</div>
 										<div className='col'>
@@ -34,15 +84,27 @@ class SearchResultUnit extends React.Component {
 										</div>
 									</div>
 								</li>
+								<li className="list-group-item">
+									<div className="row">
+										<div className='col-4'>Category</div>
+										<div className='col'>
+											{this.getCategory(this.props.resultQuery['category'])}
+										</div>
+									</div>
+								</li>
 							</ul>
 
 						</div>
 						<div className="col">
-							<a href={this.props.resultQuery["url"]}>
-								<button className="btn btn-outline-success">
-									Read Complete Article
+							{/* <a href={this.props.resultQuery["url"]}> */}
+							<button
+								onClick={() => {
+									this.loadNewsPage(this.props.resultQuery)
+								}}
+								className="btn btn-outline-success">
+								Read Complete Article
 							</button>
-							</a>
+							{/* </a> */}
 						</div>
 					</div>
 				</div>
@@ -82,6 +144,7 @@ export class SearchPageComp extends React.Component {
 				respList.push(
 					<SearchResultUnit
 						resultQuery={news_title[index]}
+						updateUserPref={this.props.updateUserPref}
 					/>
 				)
 			}
@@ -91,10 +154,11 @@ export class SearchPageComp extends React.Component {
 
 	defaultList() {
 		var respList = [];
-		for (let index = 0; index < 30; index++) {
+		for (let index = 0; index < 15; index++) {
 			respList.push(
 				<SearchResultUnit
 					resultQuery={news_title[index]}
+					updateUserPref={this.props.updateUserPref}
 				/>
 			)
 		}
@@ -106,6 +170,7 @@ export class SearchPageComp extends React.Component {
 
 		var searchView = <div></div>;
 		var searchResult = <div></div>;
+
 		if (!(this.state.query === "")) {
 			searchView = <div className="p-2">
 				Look for .... {this.state.query}

@@ -37,11 +37,12 @@ class SinglePageApp extends React.Component {
         "email": "user@email.com",
         "userId": "ia321987913sda1234",
         "userPref": {
-          "ent": 3,
-          "gov": 1,
-          "oth": 2,
-          "tech": 4,
-        }
+          "ent": 0,
+          "gov": 0,
+          "othe": 0,
+          "tech": 0,
+        },
+        "userSearchHistory": []
       },
       "messageBody": {
         "messageType": 0,
@@ -54,6 +55,7 @@ class SinglePageApp extends React.Component {
     this.updateGlobal = this.updateGlobal.bind(this);
     this.logoutOption = this.logoutOption.bind(this);
     this.changeMessageBody = this.changeMessageBody.bind(this);
+    this.updateSearchPref = this.updateSearchPref.bind(this);
 
   }
 
@@ -99,6 +101,23 @@ class SinglePageApp extends React.Component {
     })
   }
 
+  updateSearchPref(newSearchData) {
+    var searchData = this.state.userDetail.userSearchHistory;
+    searchData.push(newSearchData);
+    var tempUserPref = this.state.userDetail.userPref;
+    tempUserPref[newSearchData["searchClass"]] += 1;
+
+    this.setState({
+      "userDetail": {
+        "userName": this.state.userDetail.userName,
+        "email": this.state.userDetail.email,
+        "userId": this.state.userDetail.userId,
+        "userPref": tempUserPref,
+        "userSearchHistory": searchData
+      }
+    })
+  }
+
   componentDidMount() {
     var localData = JSON.parse(
       localStorage.getItem("globalContent")
@@ -124,7 +143,9 @@ class SinglePageApp extends React.Component {
       childComponent = <HomePageComp />
     }
     else if (this.state.pageIndex === 1) {
-      childComponent = <SearchPageComp />
+      childComponent = <SearchPageComp
+        updateUserPref={this.updateSearchPref}
+      />
     }
     else if (this.state.pageIndex === 2) {
       childComponent = <UserDetailComp

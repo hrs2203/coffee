@@ -4,7 +4,7 @@ import img_avatar3 from '../static/image/user_avatar.png';
 class UserCard extends React.Component {
   render() {
     return (
-      <div className="card smallWidth p-3">
+      <div className="card p-3">
         <div className="row">
           <div className="col-4">
             <img className="rounded-circle avatarCss"
@@ -14,13 +14,13 @@ class UserCard extends React.Component {
           <div className="col-8">
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
-                <h5 className="text-center">
+                <h5 className="">
                   User Detail
                 </h5>
               </li>
               <li className="list-group-item">
                 <div className="row">
-                  <div className='col-4'>UserName</div>
+                  <div className='col'>UserName</div>
                   <div className='col'>
                     {this.props.userName}
                   </div>
@@ -29,7 +29,7 @@ class UserCard extends React.Component {
               <li
                 className="list-group-item">
                 <div className="row">
-                  <div className='col-4'>Email</div>
+                  <div className='col'>Email</div>
                   <div className='col'>
                     {this.props.email}
                   </div>
@@ -38,14 +38,14 @@ class UserCard extends React.Component {
               <li
                 className="list-group-item">
                 <div className="row">
-                  <div className='col-4'>UserId</div>
+                  <div className='col'>UserId</div>
                   <div className='col'>
                     {this.props.userId}
                   </div>
                 </div>
               </li>
-              <li className="mt-3 list-group-item text-center">
-                <h5 className="text-center">
+              <li className="mt-3 list-group-item">
+                <h5 className="">
                   User Preferences
                 </h5>
               </li>
@@ -65,7 +65,7 @@ class UserCard extends React.Component {
                 <div className="row">
                   <div className='col'>
                     others : {
-                      this.props.userPref.oth
+                      this.props.userPref.othe
                     }</div>
                   <div className='col'>
                     technology : {
@@ -126,13 +126,16 @@ class HistoryListElement extends React.Component {
     return (
       <div className="row">
         <div className="col-6">
-          {this.props.searchTitle}
-        </div>
-        <div className="col-4">
-          {this.props.searchTime}
+          {this.props.search.title}
         </div>
         <div className="col-2">
-          Read Again
+          {this.props.search.searchClass}
+        </div>
+        <div className="col-2">
+          {this.props.search.searchTime}
+        </div>
+        <div className="col-2">
+          <a href={this.props.search.searchUrl}>Read Again</a>
         </div>
       </div>
     )
@@ -157,12 +160,29 @@ class UserSearchHistory extends React.Component {
 
   render() {
     var historyList = [];
-    for (let ind = 0; ind < this.state.historyDepth; ind++) {
+    historyList.push(
+      <li className="list-group-item">
+        <div className="row">
+          <div className="col-6">
+            <b>Search Title</b>
+          </div>
+          <div className="col-2">
+            <b>Search Category</b>
+          </div>
+          <div className="col-2">
+            <b>Search Time</b>
+          </div>
+          <div className="col-2">
+            <b>Search Link</b>
+          </div>
+        </div>
+      </li>
+    )
+    for (let ind = 0; ind < this.props.userHistory.length; ind++) {
       historyList.push(
-        <li class="list-group-item">
+        <li className="list-group-item">
           <HistoryListElement
-            searchTitle={`searchTitle ${ind}`}
-            searchTime={`searchTime ${ind}`}
+            search={this.props.userHistory[ind]}
           />
         </li>
       )
@@ -173,18 +193,15 @@ class UserSearchHistory extends React.Component {
         <h5 className="text-center">
           {this.props.userName}'s Search History
         </h5>
-        <ul class="mt-3 list-group list-group-flush">
+        <ul className="mt-3 list-group list-group-flush">
           {historyList}
         </ul>
-        <button
+        {/* <button
           onClick={
-            () => {
-              this.showMore();
-            }
-          }
-          className="btn m-2">
+            () => { this.showMore(); }
+          } className="btn m-2">
           Show {this.state.historyDepth === 5 ? "More" : "Less"}
-        </button>
+        </button> */}
       </div>
     )
   }
@@ -206,6 +223,7 @@ export class UserDetailComp extends React.Component {
         /> */}
         <UserSearchHistory
           userName={this.props.userDetail.userName}
+          userHistory={this.props.userDetail.userSearchHistory}
         />
       </div>
     )
