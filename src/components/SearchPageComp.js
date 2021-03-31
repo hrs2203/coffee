@@ -3,16 +3,12 @@ import React from 'react';
 import { news_title } from './LocalDataLoad.js';
 
 class SearchResultUnit extends React.Component {
-
-
-
 	render() {
 		return (
 			<div className="card mb-3">
 				<div className="card-body">
 					<div className="row">
 						<div className="col-9">
-
 							<ul class="col list-group list-group-flush mb-3">
 								<li class="list-group-item">
 									<div className="row">
@@ -61,7 +57,7 @@ export class SearchPageComp extends React.Component {
 		super()
 		this.state = {
 			query: "",
-			showResponse: false
+			showResponse: true
 		}
 		this.changeQuery = this.changeQuery.bind(this);
 		this.showResult = this.showResult.bind(this);
@@ -81,12 +77,14 @@ export class SearchPageComp extends React.Component {
 
 	makeSearch() {
 		var respList = [];
-		for (let index = 0; index < 15; index++) {
-			respList.push(
-				<SearchResultUnit
-					resultQuery={`${this.state.query} search resp ${index}`}
-				/>
-			)
+		for (let index = 0; index < news_title.length; index++) {
+			if (news_title[index]['title'].toLowerCase().includes(this.state.query.toLowerCase())) {
+				respList.push(
+					<SearchResultUnit
+						resultQuery={news_title[index]}
+					/>
+				)
+			}
 		}
 		return respList;
 	}
@@ -110,22 +108,20 @@ export class SearchPageComp extends React.Component {
 		var searchResult = <div></div>;
 		if (!(this.state.query === "")) {
 			searchView = <div className="p-2">
-				Looking for .... {this.state.query}
+				Look for .... {this.state.query}
 			</div>
 		}
 		if (this.state.showResponse) {
 			searchView = <div></div>;
-			searchResult = <div>
-				<hr />
-				{this.makeSearch()}
-			</div>
+
+			if (this.state.query === "") {
+				searchResult = <div>{this.defaultList()}</div>;
+			}
+			else {
+				searchResult = <div><hr />{this.makeSearch()}</div>
+			}
 		}
-		if (this.state.query === "") {
-			searchView = <div></div>;
-			searchResult = <div>
-				{this.defaultList()}
-			</div>;
-		}
+
 
 		return (
 			<div className="row">
@@ -142,15 +138,8 @@ export class SearchPageComp extends React.Component {
 				<div className="col-2">
 					<button
 						className="btn btn-primary btn-block"
-						onClick={
-							() => {
-								this.makeSearch();
-								this.showResult();
-							}
-						}
-					>
-						Search Query
-					</button>
+						onClick={() => { }}
+					> Search Query </button>
 				</div>
 				<div>
 					{searchView}
