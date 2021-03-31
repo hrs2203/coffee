@@ -37,3 +37,7 @@ img {
 .smallWidth {
   max-width: 1000px;
 }
+
+.expBtn{
+  width: 100%;
+}

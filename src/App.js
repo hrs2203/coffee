@@ -132,7 +132,9 @@ class SinglePageApp extends React.Component {
       />
     }
     else if (this.state.pageIndex === 3) {
-      childComponent = <ExplorePageComp />
+      childComponent = <ExplorePageComp
+        userDetail={this.state.userDetail}
+      />
     }
     else if (this.state.pageIndex === 4) {
       childComponent = <LoginPageComp

@@ -19,7 +19,7 @@ class ExpandedNewsContent extends React.Component {
 						/>
 					</div>
 					<div className="col">
-						{this.props.body}  
+						{this.props.body}
 						<a href={this.props.newsLink}> Read More...</a>
 					</div>
 				</div>
@@ -59,8 +59,8 @@ class NewsComponent extends React.Component {
 						{newsHeader}
 					</div>
 					<div className="card-body">
-						<ul class="col list-group mb-3">
-							<li class="list-group-item">
+						<ul className="col list-group mb-3">
+							<li className="list-group-item">
 								<div className="row">
 									<div className='col-4'>Published on </div>
 									<div className='col'>
@@ -68,7 +68,7 @@ class NewsComponent extends React.Component {
 									</div>
 								</div>
 							</li>
-							<li class="list-group-item">
+							<li className="list-group-item">
 								<div className="row">
 									<div className='col-4'>Published by</div>
 									<div className='col'>
@@ -76,7 +76,7 @@ class NewsComponent extends React.Component {
 									</div>
 								</div>
 							</li>
-							<li class="list-group-item">
+							<li className="list-group-item">
 								<div className="row">
 									<div className='col-4'>Published by</div>
 									<div className='col'>
@@ -86,14 +86,14 @@ class NewsComponent extends React.Component {
 							</li>
 						</ul>
 
-						<p className="m-2" >{
+						<div className="m-2" >{
 							this.state.expanded ?
 								<ExpandedNewsContent
 									newsLink={newsLocation}
 									imgLoc={this.props.news.urlToImage}
 									body={newsBigBody} />
 								: newsBody
-						}</p>
+						}</div>
 						<button onClick={this.expandNews}
 							className="btn btn-outline-success m-1">
 							{this.state.expanded ? "Collapes" : "Expand"}
@@ -113,6 +113,13 @@ class NewsComponent extends React.Component {
 
 
 export class ExplorePageComp extends React.Component {
+
+	constructor() {
+		super()
+		this.state = {
+			"selected": -1
+		}
+	}
 
 	getMinLength(l) {
 		return Math.min(l, 2)
@@ -174,28 +181,113 @@ export class ExplorePageComp extends React.Component {
 		return respNewsList
 	}
 
+	get_ordered_news_tile(processedNews) {
+		var items = Object.keys(this.props.userDetail.userPref).map(
+			(key) => [key, this.props.userDetail.userPref[key]]
+		);
+
+		items.sort((f, s) => s[1] - f[1]);
+
+		var headMap = {
+			"ent": "Entertainment",
+			"gov": "Government",
+			"oth": "Other",
+			"tech": "Technology",
+		}
+
+		var bodyMap = {
+			"ent": 0,
+			"gov": 1,
+			"oth": 3,
+			"tech": 2,
+		}
+
+		var respList = [];
+
+		for (let ind = 0; ind < items.length; ind++) {
+			respList.push(
+				<div>
+					<h2>{headMap[items[ind][0]]}</h2>
+					<hr />
+					{processedNews[bodyMap[items[ind][0]]]}
+					<div>
+						<button
+							onClick={() => this.setState({
+								selected: bodyMap[items[ind][0]]
+							})}
+							className="btn mb-2 expBtn">
+							Read More
+						</button>
+					</div>
+				</div>
+			)
+		}
+
+		return respList;
+	}
+
+	getNewsBody(body) {
+		var specificNewsList = [];
+		for (let index = 0; index < body.length; index++) {
+			specificNewsList.push(
+				<NewsComponent
+					news={news_file_data_gov_file1[index]}
+				/>
+			)
+		}
+		console.log(specificNewsList.length);
+		return specificNewsList;
+	}
+
+	get_specialised_list() {
+
+		var headMap = {
+			0: "Entertainment",
+			1: "Government",
+			3: "Other",
+			2: "Technology",
+		}
+
+		var bodyMap = {
+			0: news_file_data_ent_file1,
+			1: news_file_data_gov_file1,
+			2: news_file_data_tech_file1,
+			3: news_file_data_othe_file1
+		}
+
+		return (
+			<div>
+				<h2>{headMap[this.state.selected]}</h2>
+				<hr />
+				{this.getNewsBody(bodyMap[this.state.selected])}
+				<div>
+					<button
+						onClick={() => this.setState({
+							selected: -1
+						})} className="btn mb-2 expBtn">
+						Back
+						</button>
+				</div>
+			</div>
+		)
+	}
+
 	render() {
 
-		var newsList = this.getNewsTiles();
+		var newsList = [];
+
+		if (this.state.selected === -1) {
+			newsList = this.get_ordered_news_tile(
+				this.getNewsTiles()
+			);
+		} else {
+			newsList = this.get_specialised_list();
+		}
+
 
 		return (
 			<div className="row">
-				<h2>Entertainment</h2>
-				<hr />
-				{newsList[0]}
-				<button className="btn mb-2">Read More</button>
-				<h2>Government</h2>
-				<hr />
-				{newsList[1]}
-				<button className="btn mb-2">Read More</button>
-				<h2>Technology</h2>
-				<hr />
-				{newsList[2]}
-				<button className="btn mb-2">Read More</button>
-				<h2>Others</h2>
-				<hr />
-				{newsList[3]}
-				<button className="btn mb-2">Read More</button>
+				{newsList}
 			</div>
 		)
 	}
