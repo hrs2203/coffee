@@ -4,7 +4,29 @@ import {
 	news_file_data_gov_file1,
 	news_file_data_tech_file1,
 	news_file_data_othe_file1
-} from '../components/LocalDataLoad.js'
+} from '../components/LocalDataLoad.js';
+
+
+class ExpandedNewsContent extends React.Component {
+	render() {
+		return (
+			<div>
+				<div className="row">
+					<div className="col-4">
+						<img
+							src={this.props.imgLoc}
+							alt="NewsImg"
+						/>
+					</div>
+					<div className="col">
+						{this.props.body}  
+						<a href={this.props.newsLink}> Read More...</a>
+					</div>
+				</div>
+			</div>
+		)
+	}
+}
 
 class NewsComponent extends React.Component {
 
@@ -23,11 +45,12 @@ class NewsComponent extends React.Component {
 	}
 
 	render() {
-		var newsHeader = `${this.props.newsHeader}`;
-		var newsBody = `${this.props.newsBody}`;
-		var newsLocation = `${this.props.newsLocation}`;
-		var newTime = `${this.props.newTime}`;
-		var newsBigBody = `${this.props.newsBigBody}`
+		var newsHeader = `${this.props.news.title}`;
+		var newsBody = `${this.props.news.description}`;
+		var newsLocation = `${this.props.news.url}`;
+		var newTime = `${this.props.news.publishedAt}`;
+		var newsBigBody = `${this.props.news.content}`;
+		var newsAuthor = this.props.news.author
 
 		return (
 			<div className="">
@@ -53,10 +76,23 @@ class NewsComponent extends React.Component {
 									</div>
 								</div>
 							</li>
+							<li class="list-group-item">
+								<div className="row">
+									<div className='col-4'>Published by</div>
+									<div className='col'>
+										{newsAuthor}
+									</div>
+								</div>
+							</li>
 						</ul>
 
 						<p className="m-2" >{
-							this.state.expanded ? newsBigBody : newsBody
+							this.state.expanded ?
+								<ExpandedNewsContent
+									newsLink={newsLocation}
+									imgLoc={this.props.news.urlToImage}
+									body={newsBigBody} />
+								: newsBody
 						}</p>
 						<button onClick={this.expandNews}
 							className="btn btn-outline-success m-1">
@@ -93,11 +129,7 @@ export class ExplorePageComp extends React.Component {
 			index++) {
 			entNewsList.push(
 				<NewsComponent
-					newsHeader={news_file_data_ent_file1[index]["title"]}
-					newsBody={news_file_data_ent_file1[index]["description"]}
-					newsLocation={news_file_data_ent_file1[index]["url"]}
-					newTime={news_file_data_ent_file1[index]["publishedAt"]}
-					newsBigBody={news_file_data_ent_file1[index]["content"]}
+					news={news_file_data_ent_file1[index]}
 				/>
 			)
 		}
@@ -107,11 +139,7 @@ export class ExplorePageComp extends React.Component {
 			index++) {
 			govNewsList.push(
 				<NewsComponent
-					newsHeader={news_file_data_gov_file1[index]["title"]}
-					newsBody={news_file_data_gov_file1[index]["description"]}
-					newsLocation={news_file_data_gov_file1[index]["url"]}
-					newTime={news_file_data_gov_file1[index]["publishedAt"]}
-					newsBigBody={news_file_data_gov_file1[index]["content"]}
+					news={news_file_data_gov_file1[index]}
 				/>
 			)
 		}
@@ -121,11 +149,7 @@ export class ExplorePageComp extends React.Component {
 			index++) {
 			techNewsList.push(
 				<NewsComponent
-					newsHeader={news_file_data_tech_file1[index]["title"]}
-					newsBody={news_file_data_tech_file1[index]["description"]}
-					newsLocation={news_file_data_tech_file1[index]["url"]}
-					newTime={news_file_data_tech_file1[index]["publishedAt"]}
-					newsBigBody={news_file_data_tech_file1[index]["content"]}
+					news={news_file_data_tech_file1[index]}
 				/>
 			)
 		}
@@ -135,11 +159,7 @@ export class ExplorePageComp extends React.Component {
 			index++) {
 			otheNewsList.push(
 				<NewsComponent
-					newsHeader={news_file_data_othe_file1[index]["title"]}
-					newsBody={news_file_data_othe_file1[index]["description"]}
-					newsBigBody={news_file_data_othe_file1[index]["content"]}
-					newsLocation={news_file_data_othe_file1[index]["url"]}
-					newTime={news_file_data_othe_file1[index]["publishedAt"]}
+					news={news_file_data_othe_file1[index]}
 				/>
 			)
 		}
