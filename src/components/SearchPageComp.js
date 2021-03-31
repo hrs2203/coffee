@@ -1,20 +1,52 @@
 import React from 'react';
 
-import {news_title} from './LocalDataLoad.js';
+import { news_title } from './LocalDataLoad.js';
 
 class SearchResultUnit extends React.Component {
+
+
+
 	render() {
 		return (
 			<div className="card mb-3">
 				<div className="card-body">
 					<div className="row">
-						<div className="col-9">{
-							this.props.resultQuery
-						}</div>
+						<div className="col-9">
+
+							<ul class="col list-group list-group-flush mb-3">
+								<li class="list-group-item">
+									<div className="row">
+										<div className='col-4'>Title</div>
+										<div className='col'>
+											{this.props.resultQuery['title']}
+										</div>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<div className="row">
+										<div className='col-4'>Published by</div>
+										<div className='col'>
+											{this.props.resultQuery['author']}
+										</div>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<div className="row">
+										<div className='col-4'>Published On</div>
+										<div className='col'>
+											{this.props.resultQuery['publishedAt']}
+										</div>
+									</div>
+								</li>
+							</ul>
+
+						</div>
 						<div className="col">
-							<button className="btn btn-outline-success">
-								Read Complete Article
+							<a href={this.props.resultQuery["url"]}>
+								<button className="btn btn-outline-success">
+									Read Complete Article
 							</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -59,7 +91,7 @@ export class SearchPageComp extends React.Component {
 		return respList;
 	}
 
-	defaultList(){
+	defaultList() {
 		var respList = [];
 		for (let index = 0; index < 30; index++) {
 			respList.push(
