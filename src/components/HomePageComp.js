@@ -4,7 +4,7 @@ import morning_coffee from '../static/image/newspaper-and-coffee1.jpg'
 export class HomePageComp extends React.Component {
 	render() {
 		return (
-			<div className="row p-2">
+			<div className="row p-4 bg-white shadow">
 				<div className="col">
 					<img className="flex-sm" alt="" src={morning_coffee} />
 				</div>

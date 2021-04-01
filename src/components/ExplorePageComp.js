@@ -18,7 +18,7 @@ class ExpandedNewsContent extends React.Component {
 							alt="NewsImg"
 						/>
 					</div>
-					<div className="col">
+					<div className="col bg-light">
 						{this.props.body}
 						<a href={this.props.newsLink}> Read More...</a>
 					</div>
@@ -54,7 +54,7 @@ class NewsComponent extends React.Component {
 
 		return (
 			<div className="">
-				<div className="card mb-3" >
+				<div className="card mb-3 shadow-sm" >
 					<div className="card-header">
 						{newsHeader}
 					</div>

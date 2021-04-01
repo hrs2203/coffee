@@ -55,7 +55,7 @@ class SearchResultUnit extends React.Component {
 
 	render() {
 		return (
-			<div className="card mb-3">
+			<div className="card mb-3 shadow-sm">
 				<div className="card-body">
 					<div className="row">
 						<div className="col-9">
@@ -204,11 +204,11 @@ export class SearchPageComp extends React.Component {
 						placeholder="Enter Your Query"
 					/>
 				</div>
-				<div className="col-2">
+				<div className="col">
 					<button
 						className="btn btn-primary btn-block"
 						onClick={() => { }}
-					> Search Query </button>
+					> Global Search </button>
 				</div>
 				<div>
 					<br />
