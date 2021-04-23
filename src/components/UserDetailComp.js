@@ -178,7 +178,7 @@ class UserSearchHistory extends React.Component {
         </div>
       </li>
     )
-    for (let ind = 0; ind < this.props.userHistory.length; ind++) {
+    for (let ind = this.props.userHistory.length-1; ind >= 0 ; ind--) {
       historyList.push(
         <li className="list-group-item">
           <HistoryListElement
