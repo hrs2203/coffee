@@ -25,7 +25,17 @@ export class LoginPageComp extends React.Component {
 		})
 	}
 
+	/**
+	 * On login/signup, if emails dont match,
+	 * delete pref as if new user is logged it.
+	 */
 	login_btn() {
+		var newUserPref = this.props.defaultUser.userPref;
+		var newUserHistory = this.props.defaultUser.userSearchHistory;
+		// if (!(this.state.email === this.props.defaultUser.email)) {
+		// 	Object.keys(newUserPref).forEach( k => newUserPref[k] = 0 )
+		// 	newUserHistory = [];
+		// }
 		this.props.updateGlobal({
 			"pageIndex": 2,
 			"isLoggedIn": true,
@@ -33,8 +43,8 @@ export class LoginPageComp extends React.Component {
 				"userName": this.state.username,
 				"email": this.state.email,
 				"userId": this.state.password,
-				"userPref": this.props.defaultUser.userPref,
-				"userSearchHistory": this.props.defaultUser.userSearchHistory
+				"userPref": newUserPref,
+				"userSearchHistory": newUserHistory
 			},
 			"messageBody": {
 				"messageType": 0,

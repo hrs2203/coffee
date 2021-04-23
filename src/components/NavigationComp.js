@@ -13,10 +13,10 @@ export class NavigationComp extends React.Component {
               <button onClick={() => {this.props.pageChanger(0)}}
                 className="btn btn-dark m-2">HomePage</button>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <button onClick={() => {this.props.pageChanger(1)}}
                 className="btn btn-dark m-2">Search</button>
-            </li>
+            </li> */}
             <li className="nav-item">
               <button onClick={() => {this.props.pageChanger(4)}}
                 className="btn btn-dark m-2">Login</button>
