@@ -194,7 +194,7 @@ export class SearchPageComp extends React.Component {
 
 		return (
 			<div className="row">
-				<div className="col-10 form-group">
+				<div className="col form-group">
 					<input
 						type="text"
 						className="form-control"
@@ -204,12 +204,12 @@ export class SearchPageComp extends React.Component {
 						placeholder="Enter Your Query"
 					/>
 				</div>
-				<div className="col">
+				{/* <div className="col">
 					<button
 						className="btn btn-primary btn-block"
 						onClick={() => { }}
 					> Global Search </button>
-				</div>
+				</div> */}
 				<div>
 					<br />
 					{searchView}
