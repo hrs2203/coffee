@@ -81,45 +81,6 @@ class UserCard extends React.Component {
   }
 }
 
-// class UserPrefCard extends React.Component {
-//   render() {
-//     return (
-//       <div className="card smallWidth mt-3 p-3">
-//         <h5 className="text-center">
-//           {this.props.userName}'s Preferences
-//         </h5>
-//         <ul className="list-group list-group-flush text-center">
-//           <li className="list-group-item">
-//             <div className="row">
-//               <div className='col'>entertainment</div>
-//               <div className='col'>government</div>
-//               <div className='col'>others</div>
-//               <div className='col'>technology</div>
-//             </div>
-//           </li>
-//           <li className="list-group-item">
-//             <div className="row">
-//               <div className="row">
-//                 <div className='col'>{
-//                   this.props.userPref.ent
-//                 }</div>
-//                 <div className='col'>{
-//                   this.props.userPref.gov
-//                 }</div>
-//                 <div className='col'>{
-//                   this.props.userPref.oth
-//                 }</div>
-//                 <div className='col'>{
-//                   this.props.userPref.tech
-//                 }</div>
-//               </div>
-//             </div>
-//           </li>
-//         </ul>
-//       </div>
-//     )
-//   }
-// }
 
 class HistoryListElement extends React.Component {
   render() {
@@ -153,9 +114,15 @@ class UserSearchHistory extends React.Component {
   }
 
   showMore() {
-    this.setState({
-      historyDepth: (this.state.historyDepth + 10) % 20
-    })
+    if (this.state.historyDepth === 5) {
+      this.setState({
+        historyDepth: this.props.userHistory.length
+      })
+    } else {
+      this.setState({
+        historyDepth: Math.min(this.props.userHistory.length, 5)
+      })
+    }
   }
 
   render() {
@@ -178,7 +145,9 @@ class UserSearchHistory extends React.Component {
         </div>
       </li>
     )
-    for (let ind = this.props.userHistory.length-1; ind >= 0 ; ind--) {
+    for (let ind = this.props.userHistory.length - 1;
+      ind >= this.props.userHistory.length - this.state.historyDepth;
+      ind--) {
       historyList.push(
         <li className="list-group-item">
           <HistoryListElement
@@ -196,12 +165,12 @@ class UserSearchHistory extends React.Component {
         <ul className="mt-3 list-group list-group-flush">
           {historyList}
         </ul>
-        {/* <button
+        <button
           onClick={
             () => { this.showMore(); }
           } className="btn m-2">
           Show {this.state.historyDepth === 5 ? "More" : "Less"}
-        </button> */}
+        </button>
       </div>
     )
   }
@@ -217,10 +186,6 @@ export class UserDetailComp extends React.Component {
           userId={this.props.userDetail.userId}
           userPref={this.props.userDetail.userPref}
         />
-        {/* <UserPrefCard
-          userName={this.props.userDetail.userName}
-          userPref={this.props.userDetail.userPref}
-        /> */}
         <UserSearchHistory
           userName={this.props.userDetail.userName}
           userHistory={this.props.userDetail.userSearchHistory}

@@ -9,15 +9,19 @@
 }
 
 .styleFont {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-family: 'Montserrat';
+}
+
+.headingFont {
+  font-family: "";
 }
 
 .lightGreyBG{
   background-color: #f8f9fb;
 }
 
-.blackBG{
-  background-color: black;
+.mainBG{
+  background-color: rgb(177, 255, 194);
 }
 
 hr {
@@ -45,4 +49,8 @@ img {
 
 .expBtn{
   width: 100%;
+}
+
+.roundedCorner {
+  border-radius: 10px;
 }

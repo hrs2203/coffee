@@ -54,7 +54,7 @@ class NewsComponent extends React.Component {
 
 		return (
 			<div className="">
-				<div className="card mb-3 shadow-sm" >
+				<div className="card mb-3 shadow-sm roundedCorner" >
 					<div className="card-header">
 						{newsHeader}
 					</div>
@@ -236,7 +236,6 @@ export class ExplorePageComp extends React.Component {
 				<NewsComponent news={body[index]} />
 			)
 		}
-		console.log(specificNewsList.length);
 		return specificNewsList;
 	}
 

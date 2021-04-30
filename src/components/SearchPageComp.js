@@ -197,11 +197,11 @@ export class SearchPageComp extends React.Component {
 				<div className="col form-group">
 					<input
 						type="text"
-						className="form-control"
+						className="form-control roundedCorner"
 						id="QueryInput"
 						value={this.state.query}
 						onChange={this.changeQuery}
-						placeholder="Enter Your Query"
+						placeholder="Enter Short Query"
 					/>
 				</div>
 				{/* <div className="col">

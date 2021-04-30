@@ -193,6 +193,6 @@ class SinglePageApp extends React.Component {
 
 export class App extends React.Component {
   render() {
-    return <SinglePageApp />
+    return <div className=""><SinglePageApp /></div>
   }
 }
