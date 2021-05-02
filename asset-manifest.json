@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/coffee/static/css/main.e9df2842.chunk.css",
-    "main.js": "/coffee/static/js/main.2dc1ba49.chunk.js",
-    "main.js.map": "/coffee/static/js/main.2dc1ba49.chunk.js.map",
+    "main.css": "/coffee/static/css/main.9ade990f.chunk.css",
+    "main.js": "/coffee/static/js/main.205d797d.chunk.js",
+    "main.js.map": "/coffee/static/js/main.205d797d.chunk.js.map",
     "runtime-main.js": "/coffee/static/js/runtime-main.32f4d81e.js",
     "runtime-main.js.map": "/coffee/static/js/runtime-main.32f4d81e.js.map",
     "static/js/2.2096c0da.chunk.js": "/coffee/static/js/2.2096c0da.chunk.js",
     "static/js/2.2096c0da.chunk.js.map": "/coffee/static/js/2.2096c0da.chunk.js.map",
     "index.html": "/coffee/index.html",
-    "static/css/main.e9df2842.chunk.css.map": "/coffee/static/css/main.e9df2842.chunk.css.map",
+    "static/css/main.9ade990f.chunk.css.map": "/coffee/static/css/main.9ade990f.chunk.css.map",
     "static/js/2.2096c0da.chunk.js.LICENSE.txt": "/coffee/static/js/2.2096c0da.chunk.js.LICENSE.txt",
-    "static/media/newspaper-and-coffee1.48dcfadd.jpg": "/coffee/static/media/newspaper-and-coffee1.48dcfadd.jpg",
-    "static/media/pad.455b5f79.jpg": "/coffee/static/media/pad.455b5f79.jpg"
+    "static/media/grp.2b6a9962.webp": "/coffee/static/media/grp.2b6a9962.webp",
+    "static/media/nws.c952dc00.webp": "/coffee/static/media/nws.c952dc00.webp",
+    "static/media/pad.f6930ef3.webp": "/coffee/static/media/pad.f6930ef3.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.32f4d81e.js",
     "static/js/2.2096c0da.chunk.js",
-    "static/css/main.e9df2842.chunk.css",
-    "static/js/main.2dc1ba49.chunk.js"
+    "static/css/main.9ade990f.chunk.css",
+    "static/js/main.205d797d.chunk.js"
   ]
 }
